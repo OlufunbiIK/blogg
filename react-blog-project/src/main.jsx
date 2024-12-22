@@ -8,6 +8,7 @@ import About from "./pages/About.jsx";
 import Services from "./pages/Services.jsx";
 import Contact from "./pages/Contact.jsx";
 import Blogs from "./pages/Blogs.jsx";
+import SingleBlog from "./pages/SingleBlog.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -33,6 +34,12 @@ const router = createBrowserRouter([
 			{
 				path: "/contact",
 				element: <Contact />,
+			},
+			{
+				path: "/blogs/:id",
+				element: <SingleBlog />,
+				loader: ({ params }) =>
+					fetch(`http://localhost:9000/blogs/${params.id}`),
 			},
 		],
 	},
