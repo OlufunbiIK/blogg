@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
 import Paginations from "./Pagination";
+import CategorySelection from "./CategorySelection";
+import SideBar from "./SideBar";
 
 export default function BlogPage() {
 	const [blogs, setBlogs] = useState([]);
@@ -39,16 +42,27 @@ export default function BlogPage() {
 	return (
 		<div>
 			{/* category section */}
-			<div>Page Category</div>
+			<div>
+				<CategorySelection
+					onSelectCategory={handleCategoryChange}
+					selectedCategory={selectedCategory}
+					activeCategory={activeCategory}
+				/>
+			</div>
 
 			{/* blogCards section */}
-			<div>
+			<div className="flex flex-col lg:flex-row gap-12">
+				{/* blog cards component */}
 				<BlogCards
 					blogs={blogs}
 					currentPage={currentPage}
 					selectedCategory={selectedCategory}
 					pageSize={pageSize}
 				/>
+				{/* sidebar component */}
+				<div>
+					<SideBar />
+				</div>
 			</div>
 
 			{/* paginations */}
